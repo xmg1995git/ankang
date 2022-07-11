@@ -1,6 +1,7 @@
 package com.duanwu.ankang.mapper;
 
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.duanwu.ankang.mode.User;
@@ -16,6 +17,9 @@ public interface UserMapper extends BaseMapper<User> {
     int userTotalCount(User user);
 
     List<Map<String, Object>> describe(User user);
+
+
+
 
 
 

@@ -11,5 +11,5 @@ import org.springframework.boot.jackson.JsonMixin;
 public class UserJsonMixin {
 
     @JsonIgnore
-    private String name;
+    private String jsonMixin;
 }

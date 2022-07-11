@@ -17,4 +17,6 @@ public class User {
     private String name;
 
     private String nodes;
+
+    private String jsonMixin;
 }
