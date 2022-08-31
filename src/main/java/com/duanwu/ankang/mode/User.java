@@ -1,6 +1,7 @@
 package com.duanwu.ankang.mode;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class User {
 
     private String nodes;
 
+    @TableField(exist = false)
     private String jsonMixin;
 }

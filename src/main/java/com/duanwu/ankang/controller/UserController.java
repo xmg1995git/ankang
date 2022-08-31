@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @ResponseBody
@@ -46,6 +49,35 @@ public class UserController {
         this.primaryUserService.addUser(user);
         int i = 1/0;
         this.secondUserService.addUser(user);
+        return true;
+    }
+
+
+    @GetMapping("/randomAddUser")
+    @Transactional(rollbackFor = Exception.class)
+    public boolean randomAddUser(){
+        for (int i = 0; i < 2000; i++) {
+            User user = new User();
+            user.setName(String.valueOf(i));
+            user.setNodes(String.valueOf(i));
+            this.userService.save(user);
+        }
+
+        return true;
+    }
+
+
+    @GetMapping("/randomSelectUser")
+    @Transactional(rollbackFor = Exception.class)
+    public boolean randomSelectUser(){
+
+        List<User> list = this.userService.lambdaQuery().list();
+        List<String> collect = list.stream().map(User::getId).collect(Collectors.toList());
+        System.out.println("-----------"+collect.size());
+        List<User> list1 = this.userService.lambdaQuery().in(User::getId, collect).list();
+
+        System.out.println("*********"+collect.size());
+        this.userService.removeByIds(collect);
         return true;
     }
 
