@@ -3,6 +3,7 @@ package com.duanwu.ankang.controller;
 import com.duanwu.ankang.mode.User;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @RestController
@@ -30,14 +31,13 @@ public class HelloController {
 
 
     @GetMapping("/hello")
-    public String hello(){
-        System.out.println("into ...hello");
-        System.out.println("into ...hello");
-        System.out.println("into ...hello");
-        System.out.println("into ...hello");
-        System.out.println("into ...hello");
-        System.out.println("into ...hello____");
-        return "+++Hello Springboot!+++";
+    public String hello(HttpSession session) {
+        try {
+            return "+++Hello Springboot!+++: "+session.getId()+"---"+session.isNew();
+        }finally {
+            session.invalidate();
+        }
+
     }
 
 
